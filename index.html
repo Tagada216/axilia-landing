@@ -10,6 +10,14 @@
       name="description"
       content="Soutenir ceux qui soutiennent les autres. Axilia facilite le travail des travailleurs sociaux avec une gestion intelligente des dossiers et l'aide de l'IA."
     />
+
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23ffffff'/><rect width='100' height='100' rx='20' fill='url(%23gradient)'/><text x='50' y='70' font-family='system-ui,-apple-system,sans-serif' font-size='60' font-weight='700' text-anchor='middle' fill='white'>A</text><defs><linearGradient id='gradient' x1='0%25' y1='0%25' x2='100%25' y2='100%25'><stop offset='0%25' stop-color='%233b82f6'/><stop offset='100%25' stop-color='%238b5cf6'/></linearGradient></defs></svg>"
+    />
+
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
@@ -24,18 +32,13 @@
       </div>
 
       <nav class="nav">
-        <a href="#newsletter" class="btn btn-primary"
-          >Être informé du lancement</a
-        >
+        <a href="#contact" class="btn btn-ghost">Contact</a>
       </nav>
 
       <div class="hero-content">
         <h1 class="hero-title">Axilia</h1>
         <p class="hero-subtitle">Soutenir ceux qui soutiennent les autres</p>
         <div class="hero-actions">
-          <a href="#newsletter" class="btn btn-outline"
-            >Être informé du lancement</a
-          >
           <a href="#features" class="btn btn-primary">Découvrir Axilia</a>
         </div>
       </div>
@@ -213,80 +216,6 @@
       </div>
     </section>
 
-    <!-- Newsletter Section -->
-    <section class="newsletter" id="newsletter">
-      <div class="container">
-        <div class="newsletter-content">
-          <h2>Restez informé du lancement d'Axilia</h2>
-          <p>
-            Soyez parmi les premiers à découvrir notre plateforme et bénéficiez
-            d'un accès prioritaire.
-          </p>
-
-          <!-- Mailchimp Form -->
-          <div id="mc_embed_signup">
-            <form
-              action="https://votre-domaine.us1.list-manage.com/subscribe/post?u=VOTRE_USER_ID&amp;id=VOTRE_LIST_ID"
-              method="post"
-              id="mc-embedded-subscribe-form"
-              name="mc-embedded-subscribe-form"
-              class="newsletter-form"
-              target="_blank"
-              novalidate
-            >
-              <div class="form-group">
-                <input
-                  type="email"
-                  value=""
-                  name="EMAIL"
-                  id="mce-EMAIL"
-                  placeholder="Votre adresse email"
-                  required
-                />
-                <input
-                  type="text"
-                  name="FNAME"
-                  id="mce-FNAME"
-                  placeholder="Prénom"
-                />
-                <input
-                  type="text"
-                  name="LNAME"
-                  id="mce-LNAME"
-                  placeholder="Nom"
-                />
-              </div>
-
-              <!-- Honeypot for spam protection -->
-              <div style="position: absolute; left: -5000px" aria-hidden="true">
-                <input
-                  type="text"
-                  name="b_VOTRE_USER_ID_VOTRE_LIST_ID"
-                  tabindex="-1"
-                  value=""
-                />
-              </div>
-
-              <button
-                type="submit"
-                name="subscribe"
-                class="btn btn-primary btn-large"
-              >
-                S'inscrire à la newsletter
-              </button>
-            </form>
-          </div>
-
-          <p class="newsletter-privacy">
-            <small
-              >Nous respectons votre vie privée. Pas de spam, désinscription en
-              un clic.</small
-            >
-          </p>
-        </div>
-      </div>
-    </section>
-
     <!-- Footer -->
     <footer class="footer">
       <div class="container">
@@ -295,12 +224,32 @@
             <h3>Axilia</h3>
             <p>Votre assistant intelligent pour l'accompagnement social</p>
           </div>
+          <div class="footer-links">
+            <a href="mailto:hello@axilia.pro" id="contact"
+              >hello(at)axilia.pro</a
+            >
+          </div>
         </div>
         <div class="footer-bottom">
           <p>&copy; 2025 Axilia. Tous droits réservés.</p>
         </div>
       </div>
     </footer>
+
+    <!-- Mailchimp Script -->
+    <script id="mcjs">
+      !(function (c, h, i, m, p) {
+        (m = c.createElement(h)),
+          (p = c.getElementsByTagName(h)[0]),
+          (m.async = 1),
+          (m.src = i),
+          p.parentNode.insertBefore(m, p);
+      })(
+        document,
+        "script",
+        "https://chimpstatic.com/mcjs-connected/js/users/0ac638237e465f38a0e02e2fb/065c3cf60241dcfd6f53b33c2.js"
+      );
+    </script>
 
     <script src="script.js"></script>
   </body>

@@ -23,52 +23,42 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // Gestion du formulaire Mailchimp
-  const form = document.getElementById("mc-embedded-subscribe-form");
-  const submitButton = form.querySelector('button[type="submit"]');
-  const originalButtonText = submitButton.textContent;
+  // Gestion du bouton Mailchimp
+  const mailchimpTrigger = document.getElementById("mailchimp-trigger");
 
-  form.addEventListener("submit", function (e) {
-    // Validation côté client
-    const email = form.querySelector('input[name="EMAIL"]').value;
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (mailchimpTrigger) {
+    mailchimpTrigger.addEventListener("click", function () {
+      // Le script Mailchimp gère automatiquement l'ouverture du formulaire
+      // Si ça ne marche pas automatiquement, on peut déclencher manuellement
+      if (window.dojoRequire) {
+        window.dojoRequire(["mojo/signup-forms/Loader"], function (L) {
+          L.start({
+            baseUrl: "mc.us1.list-manage.com",
+            uuid: "0ac638237e465f38a0e02e2fb",
+            lid: "065c3cf60241dcfd6f53b33c2",
+          });
+        });
+      } else {
+        // Fallback : afficher une notification pour aller sur Mailchimp
+        showNotification(
+          "Redirection vers le formulaire d'inscription...",
+          "info"
+        );
+        // Ou rediriger vers une page Mailchimp
+        window.open("https://mailchi.mp/VOTRE-LIEN-PUBLIC", "_blank");
+      }
+    });
+  }
 
-    if (!emailRegex.test(email)) {
-      e.preventDefault();
-      showNotification("Veuillez entrer une adresse email valide.", "error");
-      return;
-    }
-
-    // Ajouter un état de chargement
-    submitButton.textContent = "Inscription en cours...";
-    submitButton.disabled = true;
-    submitButton.classList.add("loading");
-
-    // Le formulaire se soumettra normalement vers Mailchimp
-    setTimeout(() => {
-      showNotification(
-        "Merci ! Votre inscription a été enregistrée.",
-        "success"
-      );
-      form.reset();
-      submitButton.textContent = originalButtonText;
-      submitButton.disabled = false;
-      submitButton.classList.remove("loading");
-    }, 2000);
-  });
-
-  // Système de notifications
+  // Système de notifications (conservé pour d'autres usages)
   function showNotification(message, type = "info") {
-    // Supprimer les notifications existantes
     const existingNotifications = document.querySelectorAll(".notification");
     existingNotifications.forEach((notification) => notification.remove());
 
-    // Créer la nouvelle notification
     const notification = document.createElement("div");
     notification.className = `notification notification-${type}`;
     notification.textContent = message;
 
-    // Styles pour la notification
     Object.assign(notification.style, {
       position: "fixed",
       top: "20px",
@@ -86,7 +76,6 @@ document.addEventListener("DOMContentLoaded", function () {
       wordWrap: "break-word",
     });
 
-    // Couleurs selon le type
     switch (type) {
       case "success":
         notification.style.background =
@@ -103,13 +92,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
     document.body.appendChild(notification);
 
-    // Animation d'entrée
     setTimeout(() => {
       notification.style.opacity = "1";
       notification.style.transform = "translateX(0)";
     }, 100);
 
-    // Animation de sortie et suppression
     setTimeout(() => {
       notification.style.opacity = "0";
       notification.style.transform = "translateX(100%)";
@@ -225,7 +212,9 @@ document.addEventListener("DOMContentLoaded", function () {
     document.body.classList.remove("keyboard-navigation");
   });
 
-  console.log("✨ Axilia landing page simplifiée chargée avec succès !");
+  console.log(
+    "✨ Axilia landing page avec Mailchimp intégré chargée avec succès !"
+  );
 });
 
 // Styles CSS additionnels pour l'accessibilité au clavier
